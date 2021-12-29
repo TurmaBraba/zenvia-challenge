@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('desafio-zenvia:server');
+var http = require('http');
+const { pipeOrPort } = require('../objects/pipe-or-port');
+ 
+/**
+ * Criando o servidor HTTP.
+ */
+
+ const server = http.createServer(app);
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+// Normalizando a porte entre número, string ou false
+const normalizePort = (val) => {
+  const port = parseInt(val, 10);
+  const namePipe = (isNaN(port) && val);
+  const namePort = (port >= 0 && port)
+  return (!namePipe ? namePort : namePipe)
+};
+
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+const errorCode = { 
+  EACCES: `${pipeOrPort[typeof port === 'string']}${port} requer privilegios.`,
+  EADDRINUSE: `${pipeOrPort[typeof port === 'string']}${port} já se encontra em uso.`
+}
+
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+const onError = (error) => {
+  const messageError = 
+    error.syscall !== "listen" ? error : errorCode[error.code];
+    console.log(messageError);
+}
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+const onListening = () => {
+  const addr = server.address();
+  const bind = typeof  addr === "string" ? `pipe ${addr}` : `port ${addr.port}`
+  debug(`Listening on ${bind}`);
+}
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+ server.listen(port);
+ server.on('error', onError);
+ server.on('listening', onListening);
+
+ //Exibição do Resultado no Terminal
+ console.log('Api funcionando na porta: ', port);

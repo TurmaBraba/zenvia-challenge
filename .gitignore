@@ -1,0 +1,15 @@
+# Strcture Folders 
+######################
+
+node-modules
+
+#Logs, Database and Big Files 
+#############################
+*.json
+*.logs
+*.sql
+*.sqlite
+
+#Configurations and Security Data
+#############################
+.env
