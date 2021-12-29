@@ -5,6 +5,7 @@ node-modules
 
 #Logs, Database and Big Files 
 #############################
+
 *.json
 *.logs
 *.sql
@@ -12,4 +13,5 @@ node-modules
 
 #Configurations and Security Data
 #############################
+
 .env
