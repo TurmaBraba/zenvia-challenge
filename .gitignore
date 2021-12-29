@@ -6,7 +6,7 @@ node-modules
 #Logs, Database and Big Files 
 #############################
 
-*.json
+#*.json
 *.logs
 *.sql
 *.sqlite
