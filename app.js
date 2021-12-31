@@ -22,6 +22,9 @@ app.use(cookieParser());
 //Servindo informações para Front-End
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Iniciando API 
+require('./index')
+
 //Chamando as rotas
 
 //Resolvendo problema de Cors no navegador
