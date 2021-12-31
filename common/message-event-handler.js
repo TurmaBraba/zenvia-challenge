@@ -21,18 +21,7 @@ const messageEventHandler = async(messageEvent) => {
         });
 
         musicControllers(musicController);
-
         
-        /*
-        const fileMimeType = (messageEvent.message.contents[0].fileMimeType.includes('audio'));
-        
-        const fileAndAudio = (typeContent === 'file' && fileMimeType);
-
-        const dataMusic = (fileAndAudio && await recognizeMusic(fileUrl));
-        
-        whatsapp.sendMessage(messageTo, messageFrom, ...dataMusic);
-
-        musicControllers(dataMusic);*/
     } catch (error) {
         console.log('Ocorreu error durante o Web Hook(messageEventHandler) do Reconhecimento da música', error)
         return error
