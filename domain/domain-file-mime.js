@@ -16,6 +16,7 @@ const domainFileMime = async (mime, to, from, url, nome) => {
         });  
 
         const music =  await recognizeMusic(url)
+        console.log("Log objeto completo ->", music)
 
         returnMusic.push({
             artist: music.artist,

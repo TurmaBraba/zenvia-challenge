@@ -8,7 +8,7 @@ const recognizeMusic = async(url) => {
         const dataRecognize = { 
             'api_token': api_token,
             'url': url,
-            'return': 'deezer'
+            'return': 'deezer,spotify'
         }       
         
         const headers = {
