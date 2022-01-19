@@ -11,15 +11,22 @@ module.exports = (app) => {
         const result = request.query;
 
         if (result.code) {
-           try {
+            try {
                 const userData = await spotifyMethods.getDataUser(result.code);
-                response.json(userData)
+   
+                await spotifyMethods.setTokenRedis(userData, '22999462291');
+                console.log('Login Spotify Bem Sucessido');
+   
+                await spotifyMethods.createPlayList('22999462291');
+   
+                response.redirect('https://api.whatsapp.com/send?phone=551148377404&text=Login%20Aprovado');
+   
            } catch (error) {
-               response.status(error.response.status).json({error: error.message});               
+               response.redirect('https://api.whatsapp.com/send?phone=551148377404&text=Login%20Falhou');               
            }
         } else {
-            response.status(500).json({ erro: 'Falha no processamento interno'});
-        }  
+           response.redirect('https://api.whatsapp.com/send?phone=551148377404&text=Login%20Falhou');
+        };
     });
 
     app.use('/spotify', router);
