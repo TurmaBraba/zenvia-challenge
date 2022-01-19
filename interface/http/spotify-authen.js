@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const spotifyMethods = require('../controllers/spotify_controler');
+const spotifyMethods = require('../controllers/spotify_controller');
 
 module.exports = (app) => {
     router.get('/', (request, response) => {       
