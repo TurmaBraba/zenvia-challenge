@@ -89,6 +89,28 @@ const spotify = {
             }
         })        
 
+    },
+
+    addToplaylist: async (key, resultAudd) => {
+        
+        redis_client.hgetall(key, async (error, data) => {
+
+            let { playlist_id, access_token } = data;
+            let { uri } = resultAudd;
+            let query = querystring.stringify(uri);
+            console.log(query);
+
+            let config = {
+                method: 'post',
+                url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?`,
+                headers: {
+                    'Authorization': `Bearer ${access_token}`,
+                    'Content-Type': 'application/json'
+                },
+            }
+
+
+        })
     }
 
 
