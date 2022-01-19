@@ -97,20 +97,24 @@ const spotify = {
 
             let { playlist_id, access_token } = data;
             let { uri } = resultAudd;
-            let query = querystring.stringify(uri);
-            console.log(query);
+            let query = querystring.stringify({uris: uri});
+            console.log(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks?${query}`);
 
             let config = {
                 method: 'post',
-                url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?`,
+                url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?${query}`,
                 headers: {
                     'Authorization': `Bearer ${access_token}`,
                     'Content-Type': 'application/json'
                 },
+            };
+
+            try {
+                const result = await axios(config);
+            } catch (error) {
+                console.log('Erro em Add item a playList', error.message)
             }
-
-
-        })
+        });
     }
 
 
