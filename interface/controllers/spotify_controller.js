@@ -1,6 +1,5 @@
 const querystring = require('qs');
 const axios = require('axios');
-const redis_client = require('../../common/db/redis_connect');
 require('dotenv').config();
 
 const spotify = {
@@ -54,16 +53,9 @@ const spotify = {
 
     },
 
-    setTokenRedis: async (dataUser, key) => {
-
-        let { access_token, refresh_token, client_id } = dataUser;
-        await redis_client.hmset(key, { access_token, refresh_token, client_id });
-    },
-
-    createPlayList: async (key) => {       
-
-        redis_client.hgetall(key, async (error, data) => {
-            console.log(data);
+    createPlayList: async ( clientID, token) => {            
+        try {
+        
             let body = {
                 'name': 'Playlis chatbot music',
                 'description': 'músicas identifacadas no chatbot-music',
@@ -71,50 +63,41 @@ const spotify = {
             };
             let config = {
                 method: 'post',
-                url: `https://api.spotify.com/v1/users/${data.client_id}/playlists`,
+                url: `https://api.spotify.com/v1/users/${clientID}/playlists`,
                 headers: {
-                    'Authorization': `Bearer ${data.access_token}`,
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
                 data: body
             }
-            
-            try {
                 const result = await axios(config);
-                const { id } = result.data
-
-                await redis_client.hmset(key, { playlist_id : id });
+                return result.data
             } catch (error) {
-                console.log(data)
-            }
-        })        
+                console.log(`Ocorreu o erro: ${error}`)
+            }      
 
     },
 
-    addToplaylist: async (key, resultAudd) => {
-        
-        redis_client.hgetall(key, async (error, data) => {
+    addToplaylist: async ( resultAudd, playlistID, token) => {
 
-            let { playlist_id, access_token } = data;
+        try {
             let { uri } = resultAudd;
             let query = querystring.stringify({uris: uri});
-            console.log(`https://api.spotify.com/v1/playlists/${playlist_id}/tracks?${query}`);
+            console.log(`https://api.spotify.com/v1/playlists/${playlistID}/tracks?${query}`);
 
             let config = {
                 method: 'post',
-                url: `https://api.spotify.com/v1/playlists/${playlist_id}/tracks?${query}`,
+                url: `https://api.spotify.com/v1/playlists/${playlistID}/tracks?${query}`,
                 headers: {
-                    'Authorization': `Bearer ${access_token}`,
+                    'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'
                 },
             };
-
-            try {
                 const result = await axios(config);
+                return result
             } catch (error) {
                 console.log('Erro em Add item a playList', error.message)
             }
-        });
     }
 
 

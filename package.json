@@ -16,7 +16,9 @@
     "jade": "~1.11.0",
     "jest": "^27.4.5",
     "morgan": "~1.9.1",
-    "ngrok": "^4.2.2"
+    "ngrok": "^4.2.2",
+    "open": "^8.4.0",
+    "redis": "^3.0.2"
   },
   "devDependencies": {
     "eslint": "^8.5.0",

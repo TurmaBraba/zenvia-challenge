@@ -5,7 +5,7 @@ const typeDataControllers = async (musicController) => {
     try {
         for (const dataMusic of musicController) {
             if(dataMusic.content === 'text'){
-                await textControllers(dataMusic.id, dataMusic.to, dataMusic.from, dataMusic.nome)
+                await textControllers(dataMusic.id, dataMusic.text, dataMusic.to, dataMusic.from, dataMusic.nome)
             } else {
                 await analyzingFile(dataMusic.id, dataMusic.mime, dataMusic.to, dataMusic.from, dataMusic.url, dataMusic.nome)
             }
