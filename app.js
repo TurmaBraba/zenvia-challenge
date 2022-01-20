@@ -5,6 +5,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const { CorsOptions } = require('./objects/cors-options');
+const routerSpotify = require('./interface/http/spotify-authen');
 
 const app = express();
 
@@ -36,6 +37,8 @@ require('./common/error-status');
 //Função para tratamento do erro. 
 require('./common/error-status');
 
+// Rota Spotify
+routerSpotify(app);
 //Exportando a função. 
 module.exports = app;
 

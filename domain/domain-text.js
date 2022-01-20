@@ -1,16 +1,23 @@
-const { TextContent } = require("@zenvia/sdk");
 const whatsapp = require("../config/connect-whatsapp");
+const statusCodes = require("../common/statusCodes");
+const zenvia = require('@zenvia/sdk');
 
-const domainText = (to, from, nome) => { 
-    console.log('Escrevendo Texto Final'); 
+const domainText = async (to, from, message) => { 
+    try {
+        console.log('Escrevendo Texto Final'); 
 
-    const textReturn = [new TextContent(`Olá ${nome}! nós somos da equipe, Turma Braba, do Desafio Zenvia da D1 | Smarkio. Obrigado por nos enviar sua mensagem. Qualquer dúvida procure por: Gilberto Leite, Danilo Mattos ou Renato Carvalho.`)];
-    
-    console.log('Texto Final: ', textReturn); 
-    
-    whatsapp.sendMessage(to, from, ...textReturn).then((response) => {
-        console.log('Resultado do Envio: ', response) 
-    });;
+        const content = new zenvia.TextContent(message)
+        
+        console.log('Texto Final: ', content); 
+        
+        const response = await whatsapp.sendMessage(to, from, content)
+        console.log(`Resultado enviado: ${response}`);
+        
+    } catch (error) {
+        console.log('Ocorreu um erro no Analise de domainText ====>>> ', JSON.stringify(error, null,2)); 
+        return statusCodes(500, 'Ocorreu um erro interno.', error);
+        
+    }
 }; 
 
 module.exports = domainText;

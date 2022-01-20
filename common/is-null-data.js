@@ -1,5 +1,5 @@
-function isNullData(data) {
-    return ((data.length === 0) && true)
+function isNullEmptyUndefinedData(data) {
+    return (((data.length === 0) || (data === null)|| (data === undefined)) && true)
 }
 
-module.exports = isNullData;
+module.exports = isNullEmptyUndefinedData;
