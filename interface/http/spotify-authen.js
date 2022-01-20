@@ -12,12 +12,11 @@ module.exports = (app) => {
 
         if (result.code) {
             try {
-                const userData = await spotifyMethods.getDataUser(result.code);
-   
-                await spotifyMethods.setTokenRedis(userData, '22999462291');
+                const userData = await spotifyMethods.getDataUser(result.code);   
+                
                 console.log('Login Spotify Bem Sucessido');
    
-                await spotifyMethods.createPlayList('22999462291');
+                await spotifyMethods.createPlayList(userData.client_id, userData.access_token);;
    
                 response.redirect('https://api.whatsapp.com/send?phone=551148377404&text=Login%20Aprovado');
    
