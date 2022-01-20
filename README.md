@@ -7,11 +7,17 @@ Criar um WhatsApp Bot para reconhecimento de música. Pensando nisso, algumas fe
 
 ### Estrutura do projeto
 Para esse projeto foi adotado o conceito de DDD (Domain driven design)
-- application
+
+- application 
 - bin
 - commun
+  Nela ficam trechos de código que podem ser úteis em diversos pontos do projeto
 - config
+  Contém as configurações gerais da aplicação  
 - interface
+  - controllers
+  - http
+    Tem o objetivo guardar todas as chamadas externas a api da aplicação
 - objects
 
 ** Apis utilizadas **
@@ -20,6 +26,8 @@ Para esse projeto foi adotado o conceito de DDD (Domain driven design)
 - [Spotfy para criar playlist e seguir artista](https://developer.spotify.com/documentation/web-api/)
 - [AUDD para o reconhecimento do audio](https://audd.io/)
 
+## Como executar
+Primeiro será necessário criar uma conta na [Zenvia](https://app.zenvia.com/home/api) , no [AUDD](https://audd.io/), [Spotfy](https://developer.spotify.com/documentation/web-api/) e [Vagalume](https://api.vagalume.com.br/docs), para obter os tokens e substituir no 
 ## Features
 
 ### Identificação de música por meio de audio: 
