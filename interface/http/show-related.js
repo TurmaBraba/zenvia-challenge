@@ -13,7 +13,7 @@ const showRelated = async (singer, song) => {
     };
 
     const responseData = await axios(optionsAxios);
-    const resultData = ((responseData.status === 200) && (responseData.data.result));
+    const resultData = responseData.status === 200 && responseData.data.result;
 
     return resultData;
   } catch (error) {
