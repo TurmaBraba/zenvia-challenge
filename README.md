@@ -11,12 +11,15 @@ Para esse projeto foi adotado o conceito de DDD (Domain driven design)
 - application 
 - bin
 - commun
+
   Nela ficam trechos de código que podem ser úteis em diversos pontos do projeto
 - config
+
   Contém as configurações gerais da aplicação  
 - interface
   - controllers
   - http
+  
     Tem o objetivo guardar todas as chamadas externas a api da aplicação
 - objects
 
