@@ -23,7 +23,7 @@ Para esse projeto foi adotado o conceito de DDD (Domain driven design)
     Tem o objetivo guardar todas as chamadas externas a api da aplicação
 - objects
 
-** Apis utilizadas **
+**Apis utilizadas**
 
 - [Vagalume para mostrar músicas relacionadas](https://api.vagalume.com.br/docs/)
 - [Spotfy para criar playlist e seguir artista](https://developer.spotify.com/documentation/web-api/)
