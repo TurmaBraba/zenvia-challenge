@@ -1,30 +1,38 @@
-const musicControllers = require("../interface/controllers/music_controllers");
+const typeDataControllers = require("../interface/controllers/type-data-controllers");
 
 const musicController = [];
+let count = 0;
 
 const messageEventHandler = async(messageEvent) => {
-    try {
-        const typeContent = (messageEvent.message.contents[0].type);
-        const mimeType = (messageEvent.message.contents[0].fileMimeType);
-        const messageTo = (messageEvent.message.to);
-        const messageFrom = (messageEvent.message.from);
-        const fileUrl = (messageEvent.message.contents[0].fileUrl);
-        const nomeUsuario = (messageEvent.message.visitor.name)
+    try { 
+        const contents = (messageEvent.message.contents);
+        for (const contentsMessageEvent of contents) {
+            count = (count + 1);
+            const typeContent = (contentsMessageEvent.type);
+            const mimeType = (contentsMessageEvent.fileMimeType);
+            const messageTo = (messageEvent.message.to);
+            const messageFrom = (messageEvent.message.from);
+            const fileUrl = (contentsMessageEvent.fileUrl);
+            const nomeUsuario = (messageEvent.message.visitor.name)
+            console.log(`${typeContent} - ${mimeType} - ${messageTo} - ${messageFrom} - ${fileUrl}  - ${nomeUsuario}  `)
+            
+            musicController.push({
+                id: count,
+                content: typeContent,
+                mime: mimeType,
+                to: messageTo,
+                from: messageFrom,
+                url: fileUrl,
+                nome: nomeUsuario
+            });
+        }
         
-        musicController.push({
-            content: typeContent,
-            mime: mimeType,
-            to: messageTo,
-            from: messageFrom,
-            url: fileUrl,
-            nome: nomeUsuario
-        });
 
-        musicControllers(musicController);
+        typeDataControllers(musicController);
         
     } catch (error) {
-        console.log('Ocorreu error durante o Web Hook(messageEventHandler) do Reconhecimento da música', error)
-        return error
+        console.log(`Ocorreu um erro no Analise de messageEventHandler) ====>>> , ${error}`);
+        return statusCodes(500, 'Ocorreu um erro interno.', error);
     }
 }
 

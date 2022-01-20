@@ -6,7 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "@zenvia/sdk": "^2.1.0",
+    "@zenvia/sdk": "^2.2.0",
     "axios": "^0.24.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",

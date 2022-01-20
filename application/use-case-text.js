@@ -1,5 +1,5 @@
 const domainText = require("../domain/domain-text");
 
-const useCaseText = (to, from, nome) => domainText(to, from, nome);
+const useCaseText = (to, from, message) => domainText(to, from, message);
 
 module.exports = useCaseText;
