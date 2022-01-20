@@ -61,10 +61,12 @@ npm start
 ## Features
 
 ### Identificação de música por meio de audio: 
-
+Com um audio enviado pelo o usuário nós identificamos a música que o usuário está ouvindo e mandamos informações sobre aquela música
 ### Possibilidade de seguir artista no Spotfy:
+Com a música identificado o usuário poderá optar por seguir o artista em sua conta do spotify.
 
 ### Possibilidade se salvar a música em uma playlist:
+Após o usuário ter a música identificada através do áudio enviado, o mesmo poderá criar uma playlist, em sua conta spotify, e adicionar a mesma como uma faixa.
 
 ### Sugestão de musicas relacionadas:
 Através da música identificada se retorna para o usuário algumas  sugestões de músicas relacionadas que que talvez ele goste.
