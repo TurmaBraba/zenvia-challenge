@@ -27,7 +27,18 @@ Para esse projeto foi adotado o conceito de DDD (Domain driven design)
 - [AUDD para o reconhecimento do audio](https://audd.io/)
 
 ## Como executar
-Primeiro será necessário criar uma conta na [Zenvia](https://app.zenvia.com/home/api) , no [AUDD](https://audd.io/), [Spotfy](https://developer.spotify.com/documentation/web-api/) e [Vagalume](https://api.vagalume.com.br/docs), para obter os tokens e substituir no 
+Primeiro será necessário criar uma conta na [Zenvia](https://app.zenvia.com/home/api) , no [AUDD](https://audd.io/), [Spotfy](https://developer.spotify.com/documentation/web-api/) e [Vagalume](https://api.vagalume.com.br/docs), para obter os tokens e substituir `.env` com a seguinte estrutura: 
+```
+#Nome do Projeto 
+APP_NAME=Feature-Zenvia-D1
+
+#TOKEN
+ZENVIA_TOKEN=
+AUDD_TOKEN=
+
+#KEYS
+VAGALUME_KEY=
+```
 ## Features
 
 ### Identificação de música por meio de audio: 
